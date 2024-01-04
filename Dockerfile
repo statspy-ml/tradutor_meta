@@ -19,6 +19,8 @@ EXPOSE 8888
 # Set the working directory
 WORKDIR /workspace
 
+COPY tradutor.ipynb /workspace/
+
 # Start Jupyter Notebook
 CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
 
