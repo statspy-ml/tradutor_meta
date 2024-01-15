@@ -1,4 +1,4 @@
-# Start from an NVIDIA CUDA image with Python
+#Start from an NVIDIA CUDA image with Python
 FROM nvidia/cuda:11.8.0-runtime-ubuntu20.04
 
 # Install Python and pip
@@ -13,14 +13,18 @@ RUN pip3 install git+https://github.com/huggingface/transformers.git sentencepie
 # Install Jupyter
 RUN pip3 install jupyter
 
+# Install Jupyter
+RUN pip3 install fastapi uvicorn
+
 # Expose the port Jupyter will run on
-EXPOSE 8888
+EXPOSE 80
 
 # Set the working directory
 WORKDIR /workspace
 
-COPY tradutor.ipynb /workspace/
+COPY main.py /workspace/
 
 # Start Jupyter Notebook
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+#CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
 
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
