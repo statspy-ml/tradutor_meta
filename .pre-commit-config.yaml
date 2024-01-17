@@ -1,0 +1,14 @@
+# See https://pre-commit.com for more information
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.12.1  # Use a specific version tag instead of 'stable'
+    hooks:
+      - id: black
+        language_version: python3
+
+  - repo: https://github.com/pycqa/flake8  # Ensure this is the correct URL
+    rev: '7.0.0'  # This should be a specific version tag
+    hooks:
+      - id: flake8
+
+
